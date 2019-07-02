@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.biz.iolist.dao.ProductDao">
+
+	<select id="selectAll" resultType="ProVO">
+		SELECT * FROM tbl_product
+	</select>
+	
+	<select id="findByCode" resultType="ProVO" parameterType="String">
+		SELECT * FROM tbl_product WHERE p_code = #{p_code}
+	</select>
+	<insert id="insert">
+		INSERT INTO tbl_product(
+		P_CODE,
+		P_NAME,
+		P_IPRICE,
+		P_OPRICE
+		) VALUES(
+		#{p_code},
+		#{p_name},
+		#{p_iprice},
+		#{p_oprice}
+		)
+	</insert>
+
+	<update id="update">
+		UPDATE tbl_product
+		SET
+		P_NAME =#{p_name},
+		P_IPRICE =#{p_iprice},
+		P_OPRICE =#{p_oprice}
+		WHERE P_CODE=#{p_code}
+	</update>
+
+	<delete id="delete">
+	DELETE FROM tbl_product WHERE p_code = #{p_code}
+	</delete>
+
+</mapper>
